@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+  
+
+    <title>Gudang</title>
+
     <style>
             .table{
                 font-family: arial;
@@ -27,9 +31,15 @@
 <script type="text/javascript">
                 window.print();
             </script>
-        <h1 align="center">Contoh Laporan</h1>
-        <table class="table datatable">
-			<thead>
+
+       
+      
+		
+
+        <h1 align="center">Gudang</h1>
+     <table class="table datatable">
+     <thead>
+
 			  <tr>
 				<th scope="col">No</th>
 				<th scope="col">Nama Barang</th>
@@ -39,9 +49,14 @@
 
 			  </tr>
 			</thead>
-			<tbody>
-			<?php
-	$no=1;
+
+			
+	
+                <tbody>
+				<?php
+			
+			$no=1;
+
 	foreach ($darren as $key) {
 		
 	?>

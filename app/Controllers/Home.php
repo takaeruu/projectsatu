@@ -4,6 +4,7 @@ namespace App\Controllers;
 use Dompdf\Dompdf;
 use CodeIgniter\Controller;
 use App\Models\M_office;
+use Dompdf\Dompdf;
 
 class Home extends BaseController
 {
@@ -115,17 +116,18 @@ class Home extends BaseController
 	{
 		$model = new M_office();
         $dompdf = new dompdf();
-		$data['darren']=$model->tampil('gudang');
 
+		$data['darren']=$model->tampil('gudang');
+      
         $html = view('print', $data);
 		$dompdf->loadHtml($html);
 		$dompdf->setPaper('A4', 'landscape');
 		$dompdf->render();
 		// $dompdf->stream();
+
 		$dompdf->stream('Contoh Print.pdf', array(
 			"Attatchment" => false
 		));
-		
 	}
 
 	}
