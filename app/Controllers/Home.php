@@ -4,7 +4,6 @@ namespace App\Controllers;
 use Dompdf\Dompdf;
 use CodeIgniter\Controller;
 use App\Models\M_office;
-use Dompdf\Dompdf;
 
 class Home extends BaseController
 {

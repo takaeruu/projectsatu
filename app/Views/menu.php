@@ -237,29 +237,12 @@
       <?php if(session()->get('level')==1 ){ 
         ?>
       <li class="nav-item">
-        <a class="nav-link collapsed"  href="<?= base_url('home/pasien') ?>">
+        <a class="nav-link collapsed"  href="<?= base_url('home/barang') ?>">
           <i class="bi bi-journal-text"></i><span>Barang</span>
         </a>
        
       </li><!-- End Components Nav -->
-
-      
-      
-      <li class="nav-item">
-        <a class="nav-link collapsed"  href="<?= base_url('home/poli') ?>">
-          <i class="bi bi-journal-text"></i><span>Barang Masuk</span>
-        </a>
-       
-      </li><!-- End Forms Nav -->
 <?php } ?>
- <?php if(session()->get('level')==2 || session()->get('level')==1  ){ 
-        ?>
-      <li class="nav-item">
-        <a class="nav-link collapsed "  href="<?= base_url('home/karyawan') ?>">
-          <i class="bi bi-journal-text"></i><span>Barang Keluar</span>
-        </a>
-      </li>
-      <?php } ?>
 
       <?php if(session()->get('level')==3 || session()->get('level')==5){ 
         ?>

@@ -47,15 +47,21 @@
 	
 	<td>
 	<a href=" <?= base_url('home/print/')?>">
-		<button class="btn btn-crimson">Print</i></button>
+		<button class="btn btn-dark">
+			<i class="bi bi-printer-fill"></i>
+		</button>
 		</a>
 		
 		<a href=" <?= base_url('home/editbarang/'.$key->id_barang)?>">
-		<button class="btn btn-warning">Edit</i></button>
+		<button class="btn btn-warning">
+		<i class="ri-edit-box-line"></i>
+		</button>
 		</a>
 
 		<a href=" <?= base_url('home/hapusbarang/'.$key->id_barang)?>">
-		<button class="btn btn-danger">Hapus</i></button>
+		<button class="btn btn-danger">
+		<i class="ri-delete-bin-6-line"></i>
+		</button>
 		</a>
 	</td>
 	</tr>
