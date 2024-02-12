@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\M_office;
+use Dompdf\Dompdf;
 
 class Home extends BaseController
 {
@@ -101,7 +102,7 @@ class Home extends BaseController
 		public function barang()
 	{
 		
-		$model = new M_gudang;
+		$model = new M_office;
 		$data['darren'] = $model->tampil('gudang');
 		echo view('header');
 		echo view('menu');
@@ -113,11 +114,18 @@ class Home extends BaseController
 		public function print()
 
 	{
-		echo view ('header');
-		echo view ('menu');
-		echo view('print');
-		echo view('footer');
-		
+		$model = new M_office();
+        $dompdf = new dompdf();
+		$data['elvan']=$model->tampil('gudang');
+
+        $html = view('print', $data);
+		$dompdf->loadHtml($html);
+		$dompdf->setPaper('A4', 'landscape');
+		$dompdf->render();
+		// $dompdf->stream();
+		$dompdf->stream('Gudang.pdf', array(
+			"Attatchment" => false
+		));
 	}
 
 	}
