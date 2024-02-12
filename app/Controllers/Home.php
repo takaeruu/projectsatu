@@ -96,6 +96,20 @@ class Home extends BaseController
 	
 		
 		}
+
+
+		public function barang()
+	{
+		
+		$model = new M_gudang;
+		$data['darren'] = $model->tampil('gudang');
+		echo view('header');
+		echo view('menu');
+		echo view('barang',$data); 
+		echo view('footer');
+
+		}
+
 		public function print()
 
 	{
@@ -105,6 +119,7 @@ class Home extends BaseController
 		echo view('footer');
 		
 	}
+
 	}
 	
 	
