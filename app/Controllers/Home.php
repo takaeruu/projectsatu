@@ -105,6 +105,15 @@ class Home extends BaseController
 		echo view('footer');
 		
 	}
+	public function about()
+
+	{
+		echo view ('header');
+		echo view ('menu');
+		echo view('halaman_about');
+		echo view('footer');
+		
+	}
 	}
 	
 	
