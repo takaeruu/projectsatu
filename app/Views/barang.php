@@ -46,6 +46,9 @@
 	<td><?= $key->stok ?></td>
 	
 	<td>
+	<a href=" <?= base_url('home/print/')?>">
+		<button class="btn btn-crimson">Print</i></button>
+		</a>
 		
 		<a href=" <?= base_url('home/editbarang/'.$key->id_barang)?>">
 		<button class="btn btn-warning">Edit</i></button>
