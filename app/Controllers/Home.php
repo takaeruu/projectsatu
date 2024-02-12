@@ -22,6 +22,7 @@ class Home extends BaseController
 		return redirect()->to('home/login');
 		}
 	}
+
 		public function login()
 
 	{
@@ -96,6 +97,7 @@ class Home extends BaseController
 		
 		}
 
+
 		public function barang()
 	{
 		
@@ -107,6 +109,17 @@ class Home extends BaseController
 		echo view('footer');
 
 		}
+
+		public function print()
+
+	{
+		echo view ('header');
+		echo view ('menu');
+		echo view('print');
+		echo view('footer');
+		
+	}
+
 	}
 	
 	
