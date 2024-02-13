@@ -228,7 +228,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="<?= base_url('home/index')?>">
+        <a class="nav-link collapsed" href="<?= base_url('home/dashboard')?>">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -243,6 +243,15 @@
        
       </li><!-- End Components Nav -->
 <?php } ?>
+
+
+        ?>
+      <li class="nav-item">
+        <a class="nav-link collapsed"  href="<?= base_url('home/profile') ?>">
+          <i class="bx bx-meh"></i><span>Profile</span>
+        </a>
+       
+      </li><!-- End Components Nav -->
 
       <?php if(session()->get('level')==3 || session()->get('level')==5){ 
         ?>
