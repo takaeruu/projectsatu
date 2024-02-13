@@ -196,7 +196,7 @@ public function hapusbarang($id){
 	
 		$model = new M_office();
 		$where = array('id_barang'=>$id);
-		$model->hapus('barang',$where);
+		$model->hapus('gudang',$where);
 		
 		return redirect()->to('home/barang');
 		
