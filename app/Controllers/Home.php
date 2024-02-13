@@ -4,8 +4,12 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\M_office;
+
+use Dompdf\Options;
+
 use Dompdf\Dompdf;
 use TCPDF\TCPDF;
+
 
 class Home extends BaseController
 {
@@ -114,6 +118,34 @@ class Home extends BaseController
 
 		public function print()
 	{
+
+		 // Memuat autoload.inc.php dari DOMPDF
+		 require_once FCPATH . 'vendor/dompdf/autoload.inc.php';
+
+		 // Pengaturan dan inisialisasi DOMPDF
+		 $dompdf = new Dompdf();
+ 
+		 // Memuat data yang akan digunakan di dalam view
+		 $model = new M_office();
+		 $data['darren']=$model->tampil('gudang');
+ 
+		 // Mengambil HTML dari view 'print' dengan data yang telah dimuat
+		 $html = view('print', $data);
+ 
+		 // Memuat HTML ke DOMPDF
+		 $dompdf->loadHtml($html);
+ 
+		 // Pengaturan output PDF
+		 $dompdf->setPaper('A4', 'portrait');
+ 
+		 // Render PDF
+		 $dompdf->render();
+ 
+		 // Output PDF ke browser
+		 $dompdf->stream('Contoh Print.pdf', array(
+			 "Attatchment" => false
+		 ));
+
 		$model = new M_office();
         
 
@@ -124,6 +156,7 @@ class Home extends BaseController
 		echo view('print');
 		echo view('footer');
 		
+
 	}
 	public function TambahBarang()
 {
