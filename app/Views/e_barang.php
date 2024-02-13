@@ -42,7 +42,7 @@
                   <label for="inputEmail" class="col-sm-2 col-form-label">Stok Barang</label>
                   <div class="col-sm-10">
                   <input type="number" class="form-control" id="stok" placeholder="Enter Stok Barang" 
-                  name="stok" value="<?= $darren->stok_barang?>">
+                  name="stok" value="<?= $darren->stok?>">
                   </div>
                 </div>
 
