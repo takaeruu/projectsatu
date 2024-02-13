@@ -144,18 +144,7 @@ class Home extends BaseController
 		 // Output PDF ke browser
 		 $dompdf->stream('Contoh Print.pdf', array(
 			 "Attatchment" => false
-		 ));
-
-		$model = new M_office();
-        
-
-		$data['darren']=$model->tampil('gudang');
-		
-		echo view ('header');
-		echo view ('menu');
-		echo view('print');
-		echo view('footer');
-		
+		 ));		
 
 	}
 	public function TambahBarang()
