@@ -115,38 +115,35 @@ class Home extends BaseController
 		echo view('footer');
 
 		}
-
 		public function print()
-	{
+		{
+			// Memuat autoload.inc.php dari DOMPDF
+		   require_once FCPATH . 'vendor/dompdf/autoload.inc.php';
+	
+			// Pengaturan dan inisialisasi DOMPDF
+			$dompdf = new Dompdf();
+	
+			// Memuat data yang akan digunakan di dalam view
+			$model = new M_office();
+			$data['darren']=$model->tampil('gudang');
 
-		 // Memuat autoload.inc.php dari DOMPDF
-		 require_once FCPATH . 'vendor/dompdf/autoload.inc.php';
-
-		 // Pengaturan dan inisialisasi DOMPDF
-		 $dompdf = new Dompdf();
- 
-		 // Memuat data yang akan digunakan di dalam view
-		 $model = new M_office();
-		 $data['darren']=$model->tampil('gudang');
- 
-		 // Mengambil HTML dari view 'print' dengan data yang telah dimuat
-		 $html = view('print', $data);
- 
-		 // Memuat HTML ke DOMPDF
-		 $dompdf->loadHtml($html);
- 
-		 // Pengaturan output PDF
-		 $dompdf->setPaper('A4', 'portrait');
- 
-		 // Render PDF
-		 $dompdf->render();
- 
-		 // Output PDF ke browser
-		 $dompdf->stream('Contoh Print.pdf', array(
-			 "Attatchment" => false
-		 ));		
-
-	}
+			// Mengambil HTML dari view 'print' dengan data yang telah dimuat
+			$html = view('print', $data);
+	
+			// Memuat HTML ke DOMPDF
+			$dompdf->loadHtml($html);
+	
+			// Pengaturan output PDF
+			$dompdf->setPaper('A4', 'portrait');
+	
+			// Render PDF
+			$dompdf->render();
+	
+			// Output PDF ke browser
+			$dompdf->stream('Contoh Print.pdf', array(
+				"Attatchment" => false
+			));
+		}
 	public function TambahBarang()
 {
 
