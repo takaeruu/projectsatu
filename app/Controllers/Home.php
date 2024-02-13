@@ -192,6 +192,15 @@ public function aksieditbarang()
 	$model->edit('gudang',$isi, $where);
 	return redirect()->to('home/barang');
 }
+public function hapusbarang($id){
+	
+		$model = new M_office();
+		$where = array('id_barang'=>$id);
+		$model->hapus('barang',$where);
+		
+		return redirect()->to('home/barang');
+		
+	}
 
 	}
 	
