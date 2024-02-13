@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-use Dompdf\Dompdf;
+
 use CodeIgniter\Controller;
 use App\Models\M_office;
 
@@ -113,21 +113,71 @@ class Home extends BaseController
 		public function print()
 
 	{
-		$model = new M_office();
-        $dompdf = new dompdf();
-
-		$data['darren']=$model->tampil('gudang');
-      
-        $html = view('print', $data);
-		$dompdf->loadHtml($html);
-		$dompdf->setPaper('A4', 'landscape');
-		$dompdf->render();
-		// $dompdf->stream();
-
-		$dompdf->stream('Contoh Print.pdf', array(
-			"Attatchment" => false
-		));
+		echo view ('header');
+		echo view ('menu');
+		echo view('print');
+		echo view('footer');
+		
 	}
+	public function TambahBarang()
+{
+
+	$model = new M_office;
+	$data['darren'] = $model->tampil('gudang');
+	echo view('header');
+	echo view('menu');
+	echo view('tambahbarang',$data); 
+	echo view('footer');
+}
+
+public function aksi_t_barang()
+{
+	$nama = $this->request->getPost('nama');
+	$kode = $this->request->getPost('kode');
+		
+	$tabel=array(
+		'nama_barang'=>$nama,
+		'kode_barang'=>$kode,
+		'stok'=>'0'
+
+	);
+
+	$model=new M_office;
+	$model->tambah('gudang', $tabel);
+	return redirect()->to('home/barang');
+
+}
+
+public function editbarang($id)
+{
+
+	$model = new M_office;
+	$where = array('id_barang' => $id);
+	$data['darren'] = $model->getWhere('gudang', $where);
+	echo view('header');
+	echo view('menu');
+	echo view('e_barang',$data); 
+	echo view('footer');
+
+}
+
+public function aksieditbarang()
+{
+	$model = new M_office; 
+	$a = $this->request->getPost('nama');
+	$b = $this->request->getPost('kode');
+	$c = $this->request->getPost('stok');
+	$id = $this->request->getPost('id');
+	$where = array('id_barang'=>$id);
+
+	$isi = array(
+		'nama_barang'=> $a,
+		'kode_barang'=> $b,		
+		'stok'=> $c,		
+	);
+	$model->edit('gudang',$isi, $where);
+	return redirect()->to('home/barang');
+}
 
 	}
 	
