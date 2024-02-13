@@ -4,6 +4,7 @@ namespace App\Controllers;
 use Dompdf\Dompdf;
 use CodeIgniter\Controller;
 use App\Models\M_office;
+use Dompdf\Options;
 
 class Home extends BaseController
 {
@@ -113,20 +114,32 @@ class Home extends BaseController
 		public function print()
 
 	{
-		$model = new M_office();
-        $dompdf = new dompdf();
+		 // Memuat autoload.inc.php dari DOMPDF
+		 require_once FCPATH . 'vendor/dompdf/autoload.inc.php';
 
-		$data['darren']=$model->tampil('gudang');
-      
-        $html = view('print', $data);
-		$dompdf->loadHtml($html);
-		$dompdf->setPaper('A4', 'landscape');
-		$dompdf->render();
-		// $dompdf->stream();
-
-		$dompdf->stream('Contoh Print.pdf', array(
-			"Attatchment" => false
-		));
+		 // Pengaturan dan inisialisasi DOMPDF
+		 $dompdf = new Dompdf();
+ 
+		 // Memuat data yang akan digunakan di dalam view
+		 $model = new M_office();
+		 $data['darren']=$model->tampil('gudang');
+ 
+		 // Mengambil HTML dari view 'print' dengan data yang telah dimuat
+		 $html = view('print', $data);
+ 
+		 // Memuat HTML ke DOMPDF
+		 $dompdf->loadHtml($html);
+ 
+		 // Pengaturan output PDF
+		 $dompdf->setPaper('A4', 'portrait');
+ 
+		 // Render PDF
+		 $dompdf->render();
+ 
+		 // Output PDF ke browser
+		 $dompdf->stream('Contoh Print.pdf', array(
+			 "Attatchment" => false
+		 ));
 	}
 
 	}
