@@ -245,7 +245,6 @@
 <?php } ?>
 
 
-        ?>
       <li class="nav-item">
         <a class="nav-link collapsed"  href="<?= base_url('home/profile') ?>">
           <i class="bx bx-meh"></i><span>Profile</span>
