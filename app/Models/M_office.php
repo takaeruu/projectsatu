@@ -5,7 +5,12 @@ namespace App\Models;
 use CodeIgniter\Model;
 
 class M_office extends Model
+
 {
+    protected $table = 'user'; // Nama tabel m_office
+    protected $primaryKey = 'id_user'; // Primary key dari tabel m_office
+    protected $allowedFields = ['foto']; // Kolom-kolom yang diizinkan untuk diisi
+
 	public function tampil($yoga){
      return $this->db->table($yoga)  
      				 ->get()
@@ -65,5 +70,7 @@ class M_office extends Model
                         ->getwhere($where)
                         ->getRow();
     }
+
+    
     
 }

@@ -244,6 +244,15 @@
       </li><!-- End Components Nav -->
 <?php } ?>
 
+
+        ?>
+      <li class="nav-item">
+        <a class="nav-link collapsed"  href="<?= base_url('home/profile') ?>">
+          <i class="bx bx-meh"></i><span>Profile</span>
+        </a>
+       
+      </li><!-- End Components Nav -->
+
       <?php if(session()->get('level')==3 || session()->get('level')==5){ 
         ?>
       <li class="nav-item">
