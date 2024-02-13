@@ -202,7 +202,61 @@ public function hapusbarang($id){
 		
 	}
 
-	}
-	
-	
+	public function profile()
+{
+	if(session()->get('level')>0){
+		$model = new M_office;
+	$where = array('id_user'=>$id);
+	$data['user'] = $model->getWhere('user', $where);
 
+	$where = array('id_user' => session()->get('id'));
+	$data['user'] = $model->getWhere('user', $where);
+	echo view('header');
+	echo view('menu',$data);
+	echo view('profile',$data); 
+	echo view('footer');
+	}else{
+		return redirect()->to('home/login');
+	}
+}
+
+public function e_foto()
+{
+   
+    if(session()->get('level') > 0){
+
+		echo view('header');
+		echo view('menu');
+		echo view('e_foto'); 
+		echo view('footer');
+    } else {
+        return redirect()->to('home/login');
+    }
+}
+
+public function aksi_ubah_foto()
+{
+	if ($this->request->getFile('foto')) {
+		// Simpan file foto ke dalam direktori yang diinginkan
+		$file = $this->request->getFile('foto');
+		$newFileName = $file->getRandomName(); // Ubah nama file jika perlu
+		$file->move(ROOTPATH . 'public/img', $newFileName);
+
+		// Perbarui data pengguna di database
+		$userModel = new M_office(); // Sesuaikan dengan model yang Anda gunakan
+		$userId = session()->get('id_user'); // Ambil ID pengguna dari session
+		$userData = [
+			'foto' => $newFileName // Simpan nama file foto di kolom foto_profil
+		];
+		$userModel->update($userId, $userData); // Lakukan pembaruan data pengguna
+
+		// Berhasil mengubah foto profil
+		return redirect()->to('home/profile')->with('success', 'Foto profil berhasil diubah');
+	} else {
+		// File foto tidak ditemukan
+		return redirect()->to('home/e_foto')->with('error', 'Foto tidak ditemukan');
+
+	
+}
+	}
+}
