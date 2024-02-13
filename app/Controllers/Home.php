@@ -219,7 +219,7 @@ public function hapusbarang($id){
 {
 	if(session()->get('level')>0){
 		$model = new M_office;
-	$where = array('id_user'=>$id);
+	$where = array('id_user');
 	$data['user'] = $model->getWhere('user', $where);
 
 	$where = array('id_user' => session()->get('id'));
@@ -235,9 +235,8 @@ public function hapusbarang($id){
 
 public function e_foto()
 {
-   
     if(session()->get('level') > 0){
-
+		
 		echo view('header');
 		echo view('menu');
 		echo view('e_foto'); 
@@ -250,26 +249,31 @@ public function e_foto()
 public function aksi_ubah_foto()
 {
 	if ($this->request->getFile('foto')) {
-		// Simpan file foto ke dalam direktori yang diinginkan
+
 		$file = $this->request->getFile('foto');
-		$newFileName = $file->getRandomName(); // Ubah nama file jika perlu
+		$newFileName = $file->getRandomName(); 
 		$file->move(ROOTPATH . 'public/img', $newFileName);
 
-		// Perbarui data pengguna di database
-		$userModel = new M_office(); // Sesuaikan dengan model yang Anda gunakan
-		$userId = session()->get('id_user'); // Ambil ID pengguna dari session
-		$userData = [
-			'foto' => $newFileName // Simpan nama file foto di kolom foto_profil
-		];
-		$userModel->update($userId, $userData); // Lakukan pembaruan data pengguna
-
-		// Berhasil mengubah foto profil
-		return redirect()->to('home/profile')->with('success', 'Foto profil berhasil diubah');
+		$userModel = new M_office(); 
+		$userId = array('id_user' => session()->get('id'));
+		$userData = ['foto' => $newFileName];
+		$userModel->edit('user', $userData,$userId);
+		return redirect()->to('home/profile');
 	} else {
-		// File foto tidak ditemukan
-		return redirect()->to('home/e_foto')->with('error', 'Foto tidak ditemukan');
+		return redirect()->to('home/e_foto');
 
 	
 }
 	}
+
+	public function hapusfoto()
+{       
+        $userModel = new M_office(); 
+        $userData = ['foto' => null];
+		$userId = array('id_user' => session()->get('id'));
+        $userModel->edit('user', $userData, $userId);
+		
+        return redirect()->to('home/profile');
+
+}
 }

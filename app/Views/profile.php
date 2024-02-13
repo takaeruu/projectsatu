@@ -66,13 +66,12 @@
                       <div class="col-md-8 col-lg-9">
                         <img src="<?= base_url('img/'.$user->foto)?>" alt="Profile">
                         <div class="pt-2">
-                        <?php if (session()->get('level')==1){?>
-                          <a href="<?= base_url('home/e_foto') ?>" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-                          <?php } ?>
-
-                          <?php if (session()->get('level')==1){?>
-                          <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
-                          <?php } ?>
+                       
+                          <a href="<?= base_url('home/e_foto/'.$key->id_user)?>" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
+             
+              
+                          <a href="<?= base_url('home/hapusfoto/'.$key->id_user)?>" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+               
                         </div>
                       </div>
                     </div>
@@ -85,6 +84,13 @@
                       </div>
                     </div>
 
+                    <div class="row mb-3">
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Level</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="Nama" type="text" class="form-control" id="level_kry" 
+                        value="<?= $user->level?>" >
+                      </div>
+                    </div>
 
                     
                     <div class="row mb-3">
