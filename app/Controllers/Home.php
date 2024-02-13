@@ -5,6 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\M_office;
 use Dompdf\Dompdf;
+use TCPDF\TCPDF;
 
 class Home extends BaseController
 {
@@ -114,19 +115,10 @@ class Home extends BaseController
 		public function print()
 	{
 		$model = new M_office();
-        $dompdf = new dompdf();
+        
 
 		$data['darren']=$model->tampil('gudang');
-
-        $html = view('print', $data);
-		$dompdf->loadHtml($html);
-		$dompdf->setPaper('A4', 'landscape');
-		$dompdf->render();
-		// $dompdf->stream();
-
-		$dompdf->stream('Contoh Print.pdf', array(
-			"Attatchment" => false
-		));
+		
 		echo view ('header');
 		echo view ('menu');
 		echo view('print');
@@ -201,6 +193,29 @@ public function hapusbarang($id){
 		return redirect()->to('home/barang');
 		
 	}
+public function printpdf()
+{
+    $pdf = new \TCPDF();
+    $model = new M_office;
+    $data['darren'] = $model->tampil('gudang');
+    $data = [
+        'mainmenu' => 'dashboard',
+        'submenu' => ''
+    ];
+    // render the PDF view
+    $pdf->SetCreator(PDF_CREATOR);
+    $pdf->SetAuthor('Your Name');
+    $pdf->SetTitle('PDF Title');
+    $pdf->SetSubject('PDF Subject');
+    $pdf->AddPage();
+    // Add your PDF content here using TCPDF methods
+
+    // Output the PDF to the browser
+    $pdf->Output('output.pdf', 'I');
+}
+
+
+
 
 	public function profile()
 {
