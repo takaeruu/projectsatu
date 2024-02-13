@@ -193,30 +193,6 @@ public function hapusbarang($id){
 		return redirect()->to('home/barang');
 		
 	}
-public function printpdf()
-{
-    $pdf = new \TCPDF();
-    $model = new M_office;
-    $data['darren'] = $model->tampil('gudang');
-    $data = [
-        'mainmenu' => 'dashboard',
-        'submenu' => ''
-    ];
-    // render the PDF view
-    $pdf->SetCreator(PDF_CREATOR);
-    $pdf->SetAuthor('Your Name');
-    $pdf->SetTitle('PDF Title');
-    $pdf->SetSubject('PDF Subject');
-    $pdf->AddPage();
-    // Add your PDF content here using TCPDF methods
-
-    // Output the PDF to the browser
-    $pdf->Output('output.pdf', 'I');
-}
-
-
-
-
 	public function profile()
 {
 	if(session()->get('level')>0){

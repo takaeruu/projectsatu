@@ -46,7 +46,7 @@
 	<td><?= $key->stok ?></td>
 	
 	<td>
-	<a href=" <?= base_url('home/printpdf/')?>">
+	<a href=" <?= base_url('home/print/')?>">
 		<button class="btn btn-dark">
 			<i class="bi bi-printer-fill"></i>
 		</button>
