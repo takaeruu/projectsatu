@@ -55,17 +55,9 @@ $imageHeight = 50;
    </style>
 </head>
 <body>
+
 <img src="https://i.postimg.cc/bYTDFsYg/kop.jpg"  alt="" style="margin-top: -5px;" width="1550" height="270">
-    <!-- <h6 class="atas">
-    <div>
-        <p>NAMA PERUSAHAAN : Pt. Inspirasi Meta Jaya</p>
-        <p>ALAMAT PERUSAHAAN : JL. METASARI 170 B, SIDAKARYA</p>
-        <p>NOMOR PERUSAHAAN : 0361-308-6044</p>
-    </div>
-    <div>
-        <p class="kanan">Batam, <?php echo date("D-d-M-Y"); ?></p>
-    </div>
-</h6> -->
+
 <table style="font-size: 10px;">
 <tr>
     <td style="text-align: left;">
