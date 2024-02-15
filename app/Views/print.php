@@ -124,7 +124,7 @@
    </style>
 </head>
 <body>
-    <img src=/Users/user/Desktop/projectsatu/public/img/kop.jpeg alt="" style="margin-top: -5px;">
+    <img src=/Users/ASUS/OneDrive/Desktop/projectsatu/public/img/kop.jpeg alt="" style="margin-top: -5px;">
     <br><br><br><br><br><br>
     <h6 class="atas" style="display: flex; justify-content: space-between;">
     <div>

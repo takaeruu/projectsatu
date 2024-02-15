@@ -26,7 +26,7 @@
         <label for="foto">Pilih Foto Profil Baru:</label><br>
         <input type="file" id="foto" name="foto" accept="image/*"><br><br>
 
-        <input type="hidden" name="id" value="<?=$darren->id_user?>">
+     
         <input type="submit" value="Simpan Perubahan">
     </form>
 
