@@ -71,6 +71,10 @@ class M_office extends Model
                         ->getRow();
     }
 
-    
-    
+    public function tampildesc($table_name, $order_column)
+    {
+        return $this->orderBy($order_column, 'desc')
+                    ->get($table_name)
+                    ->getResult();
+    }
 }

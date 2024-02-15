@@ -1,6 +1,11 @@
 <?php
 
+
+
+$imagePath = FCPATH. 'img/kop.jpeg';
+
 $imagePath = 'https://i.postimg.cc/bYTDFsYg/kop.jpg';
+
 $imageWidth = 50;
 $imageHeight = 50;
 ?>
@@ -55,7 +60,7 @@ $imageHeight = 50;
 </head>
 <body>
 
-<img src="https://i.postimg.cc/bYTDFsYg/kop.jpg"  alt="" style="margin-top: -5px;" width="1550" height="270">
+<img src="<?= $imagePath;?>"  alt="" style="margin-top: -5px;" width="1550" height="270">
 
 <table style="font-size: 10px;">
 <tr>

@@ -37,6 +37,13 @@
                   </div>
                 </div>
 
+                <div class="row mb-3">
+                  <label for="inputEmail" class="col-sm-2 col-form-label">Stok Barang</label>
+                  <div class="col-sm-10">
+                  <input type="text" class="form-control" id="stok" placeholder="Enter Stok Barang" 
+                  name="stok">
+                  </div>
+                </div>
                 
 
                 <div class="row mb-3">
