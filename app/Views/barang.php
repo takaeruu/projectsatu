@@ -21,6 +21,11 @@
 		  <a href="<?= base_url ('home/tambahbarang')?> ">
 		<button class="btn btn-success"><i class="bx bx-duplicate"></i></button>
 	</a>
+	<a href=" <?= base_url('home/print/')?>">
+		<button class="btn btn-dark">
+			<i class="bi bi-printer-fill"></i>
+		</button>
+		</a>
 		  <!-- Table with stripped rows -->
 		  <table class="table datatable">
 			<thead>
@@ -46,11 +51,7 @@
 	<td><?= $key->stok ?></td>
 	
 	<td>
-	<a href=" <?= base_url('home/print/')?>">
-		<button class="btn btn-dark">
-			<i class="bi bi-printer-fill"></i>
-		</button>
-		</a>
+	
 		
 		<a href=" <?= base_url('home/editbarang/'.$key->id_barang)?>">
 		<button class="btn btn-warning">
