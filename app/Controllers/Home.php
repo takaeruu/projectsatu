@@ -6,9 +6,8 @@ use CodeIgniter\Controller;
 use App\Models\M_office;
 
 use Dompdf\Options;
-
 use Dompdf\Dompdf;
-use TCPDF\TCPDF;
+use TCPDF;
 
 
 class Home extends BaseController
@@ -117,32 +116,29 @@ class Home extends BaseController
 		}
 		public function print()
 		{
-			// Memuat autoload.inc.php dari DOMPDF
-		   require_once FCPATH . 'vendor/dompdf/autoload.inc.php';
-	
-			// Pengaturan dan inisialisasi DOMPDF
-			$dompdf = new Dompdf();
-	
-			// Memuat data yang akan digunakan di dalam view
-			$model = new M_office();
-			$data['darren']=$model->tampil('gudang');
+			require_once  FCPATH. 'tcpdf/tcpdf.php';
+    	$model = new M_office();
+		$data['darren'] = $model->tampil('gudang');
 
-			// Mengambil HTML dari view 'print' dengan data yang telah dimuat
-			$html = view('print', $data);
-	
-			// Memuat HTML ke DOMPDF
-			$dompdf->loadHtml($html);
-	
-			// Pengaturan output PDF
-			$dompdf->setPaper('A4', 'portrait');
-	
-			// Render PDF
-			$dompdf->render();
-	
-			// Output PDF ke browser
-			$dompdf->stream('Contoh Print.pdf', array(
-				"Attatchment" => false
-			));
+    $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+    // Set document information
+    $pdf->SetCreator(PDF_CREATOR);
+    $pdf->SetAuthor('Your Name');
+    $pdf->SetTitle('Your Title');
+    $pdf->SetSubject('Your Subject');
+    $pdf->SetKeywords('Your Keywords');
+    $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+    $imagePath = 'https://i.postimg.cc/bYTDFsYg/kop.jpg';
+    // Add a page
+    $pdf->AddPage();
+
+
+    // Set some content to print
+    $html = view('print', $data); // Ganti 'your_pdf_view' dengan nama view Anda
+
+    $pdf->writeHTML($html, true, false, true, false, '');
+    $pdf->Output('Contoh Print.pdf', 'I');
 		}
 	public function TambahBarang()
 {
@@ -270,7 +266,7 @@ public function aksi_ubah_foto()
 		$userId = array('id_user' => session()->get('id'));
         $userModel->edit('user', $userData, $userId);
 		
-        return redirect()->to('home/profile');
+		return redirect()->to('home/profile');
 
 }
 }
