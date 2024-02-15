@@ -120,7 +120,7 @@ class Home extends BaseController
 		echo view('footer');
 
 		$where = array('id_user');
-		$data['darren'] = $model->tampil('gudang');
+		$data['darren'] = $model->tampil_urut('gudang');
 
 		$where = array('id_user' => session()->get('id'));
 		$data['user'] = $model->getWhere('user', $where);

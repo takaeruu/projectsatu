@@ -17,6 +17,12 @@ class M_office extends Model
           			 ->getResult();   
 
 	}
+    public function tampil_urut($yoga){
+        return $this->db->table($yoga)
+            ->orderBy('id_barang', 'DESC') // Menambahkan klausa orderBy untuk mengurutkan berdasarkan ID secara descending
+            ->get()
+            ->getResult();   
+    }
     public function join($tabel1, $tabel2, $on){
      return $this->db->table($tabel1)  
                      ->join($tabel2,$on,'left')
