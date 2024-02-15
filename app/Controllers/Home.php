@@ -16,11 +16,12 @@ class Home extends BaseController
 	{	
 		if(session()->get('id')>0){
 		$model = new M_office();
+		
 		$where=array('id_user'=>session()->get('id'));
 		$data['user'] = $model->getWhere('user', $where);
 
 		echo view ('header');
-		echo view ('menu', $data);
+		echo view ('menu',$data);
 		echo view('dashboard');
 		echo view('footer');
 	
@@ -110,6 +111,14 @@ class Home extends BaseController
 	{
 		if(session()->get('id')>0){
 		$model = new M_office;
+
+		$desc['darren'] = $model->tampil('gudang');
+		$data['user'] = $model->getWhere('user', $where);
+		echo view('header');
+		echo view('menu',$data);
+		echo view('barang',$desc); 
+		echo view('footer');
+
 		$where = array('id_user');
 		$data['darren'] = $model->tampil_urut('gudang');
 
@@ -123,7 +132,10 @@ class Home extends BaseController
 	} else {
         return redirect()->to('home/login');
     }
+
 		}
+
+
 		public function print()
 		{
 			if(session()->get('id')>0){
@@ -151,10 +163,14 @@ class Home extends BaseController
     $pdf->writeHTML($html, true, false, true, false, '');
     $pdf->Output('Contoh Print.pdf', 'I');
 	exit();
+
+		}
+
 } else {
 	return redirect()->to('home/login');
 }
 }
+
 
 	public function TambahBarang()
 {
@@ -176,11 +192,12 @@ public function aksi_t_barang()
 {
 	$nama = $this->request->getPost('nama');
 	$kode = $this->request->getPost('kode');
+	$stok = $this->request->getPost('stok');
 		
 	$tabel=array(
 		'nama_barang'=>$nama,
 		'kode_barang'=>$kode,
-		'stok'=>'0'
+		'stok'=>$stok
 
 	);
 
