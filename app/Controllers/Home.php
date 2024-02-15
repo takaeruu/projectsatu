@@ -111,24 +111,15 @@ class Home extends BaseController
 	{
 		if(session()->get('id')>0){
 		$model = new M_office;
-
-		$desc['darren'] = $model->tampil('gudang');
+		$where = array('id_user');
+		$desc['darren'] = $model->tampil_urut('gudang');
 		$data['user'] = $model->getWhere('user', $where);
 		echo view('header');
 		echo view('menu',$data);
 		echo view('barang',$desc); 
 		echo view('footer');
 
-		$where = array('id_user');
-		$data['darren'] = $model->tampil_urut('gudang');
-
-		$where = array('id_user' => session()->get('id'));
-		$data['user'] = $model->getWhere('user', $where);
-
-		echo view('header');
-		echo view('menu', $data);
-		echo view('barang',$data); 
-		echo view('footer');
+		
 	} else {
         return redirect()->to('home/login');
     }
@@ -163,12 +154,11 @@ class Home extends BaseController
     $pdf->writeHTML($html, true, false, true, false, '');
     $pdf->Output('Contoh Print.pdf', 'I');
 	exit();
-
-		}
-
 } else {
 	return redirect()->to('home/login');
-}
+		}
+
+
 }
 
 
