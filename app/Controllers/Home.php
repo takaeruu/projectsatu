@@ -108,7 +108,7 @@ class Home extends BaseController
 
 		public function barang()
 	{
-		
+		if(session()->get('id')>0){
 		$model = new M_office;
 		$where = array('id_user');
 		$data['darren'] = $model->tampil('gudang');
@@ -120,10 +120,13 @@ class Home extends BaseController
 		echo view('menu', $data);
 		echo view('barang',$data); 
 		echo view('footer');
-
+	} else {
+        return redirect()->to('home/login');
+    }
 		}
 		public function print()
 		{
+			if(session()->get('id')>0){
 			require_once  FCPATH. 'tcpdf/tcpdf.php';
     	$model = new M_office();
 		$data['darren'] = $model->tampil('gudang');
@@ -148,11 +151,14 @@ class Home extends BaseController
     $pdf->writeHTML($html, true, false, true, false, '');
     $pdf->Output('Contoh Print.pdf', 'I');
 	exit();
+} else {
+	return redirect()->to('home/login');
+}
 }
 
 	public function TambahBarang()
 {
-
+	if(session()->get('id')>0){
 	$model = new M_office;
 	$data['darren'] = $model->tampil('gudang');
 	$where = array('id_user' => session()->get('id'));
@@ -161,6 +167,9 @@ class Home extends BaseController
 	echo view ('menu', $data);
 	echo view('tambahbarang',$data); 
 	echo view('footer');
+} else {
+	return redirect()->to('home/login');
+}
 }
 
 public function aksi_t_barang()
@@ -183,7 +192,7 @@ public function aksi_t_barang()
 
 public function editbarang($id)
 {
-
+	if(session()->get('id')>0){
 	$model = new M_office;
 	$where = array('id_barang' => $id);
 	$data['darren'] = $model->getWhere('gudang', $where);
@@ -194,7 +203,9 @@ public function editbarang($id)
 	echo view ('menu', $data);
 	echo view('e_barang',$data); 
 	echo view('footer');
-
+} else {
+	return redirect()->to('home/login');
+}
 }
 
 public function aksieditbarang()
