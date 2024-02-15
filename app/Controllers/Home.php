@@ -17,9 +17,10 @@ class Home extends BaseController
 		if(session()->get('id')>0){
 		$model = new M_office();
 		$where=array('id_user'=>session()->get('id'));
+		$data['user'] = $model->getWhere('user', $where);
 
 		echo view ('header');
-		echo view ('menu');
+		echo view ('menu', $data);
 		echo view('dashboard');
 		echo view('footer');
 	
@@ -73,8 +74,10 @@ class Home extends BaseController
 		$model = new M_office;
 		
 		$data['yoga'] = $model->tampil('user');
+		$where = array('id_user' => session()->get('id'));
+	$data['user'] = $model->getWhere('user', $where);
 		echo view ('header');
-		echo view ('menu');
+		echo view ('menu', $data);
 		echo view('t_akun');
 		echo view('footer');
 		
@@ -107,9 +110,14 @@ class Home extends BaseController
 	{
 		
 		$model = new M_office;
+		$where = array('id_user');
 		$data['darren'] = $model->tampil('gudang');
+
+		$where = array('id_user' => session()->get('id'));
+		$data['user'] = $model->getWhere('user', $where);
+
 		echo view('header');
-		echo view('menu');
+		echo view('menu', $data);
 		echo view('barang',$data); 
 		echo view('footer');
 
@@ -139,14 +147,18 @@ class Home extends BaseController
 
     $pdf->writeHTML($html, true, false, true, false, '');
     $pdf->Output('Contoh Print.pdf', 'I');
-		}
+	exit();
+}
+
 	public function TambahBarang()
 {
 
 	$model = new M_office;
 	$data['darren'] = $model->tampil('gudang');
+	$where = array('id_user' => session()->get('id'));
+	$data['user'] = $model->getWhere('user', $where);
 	echo view('header');
-	echo view('menu');
+	echo view ('menu', $data);
 	echo view('tambahbarang',$data); 
 	echo view('footer');
 }
@@ -175,8 +187,11 @@ public function editbarang($id)
 	$model = new M_office;
 	$where = array('id_barang' => $id);
 	$data['darren'] = $model->getWhere('gudang', $where);
+	$where = array('id_user' => session()->get('id'));
+	$data['user'] = $model->getWhere('user', $where);
+
 	echo view('header');
-	echo view('menu');
+	echo view ('menu', $data);
 	echo view('e_barang',$data); 
 	echo view('footer');
 
