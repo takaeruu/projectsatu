@@ -67,10 +67,10 @@
                         <img src="<?= base_url('img/'.$user->foto)?>" alt="Profile">
                         <div class="pt-2">
                        
-                          <a href="<?= base_url('home/e_foto/'.$key->id_user)?>" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
+                          <a href="<?= base_url('home/e_foto/'.$user->id_user)?>" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
              
               
-                          <a href="<?= base_url('home/hapusfoto/'.$key->id_user)?>" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                          <a href="<?= base_url('home/hapusfoto/'.$user->id_user)?>" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
                
                         </div>
                       </div>
