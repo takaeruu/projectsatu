@@ -19,6 +19,7 @@ class Home extends BaseController
 		
 		$where=array('id_user'=>session()->get('id'));
 		$data['user'] = $model->getWhere('user', $where);
+
 		echo view ('header');
 		echo view ('menu',$data);
 		echo view('dashboard');
@@ -74,8 +75,10 @@ class Home extends BaseController
 		$model = new M_office;
 		
 		$data['yoga'] = $model->tampil('user');
+		$where = array('id_user' => session()->get('id'));
+	$data['user'] = $model->getWhere('user', $where);
 		echo view ('header');
-		echo view ('menu');
+		echo view ('menu', $data);
 		echo view('t_akun');
 		echo view('footer');
 		
@@ -106,19 +109,36 @@ class Home extends BaseController
 
 		public function barang()
 	{
-		
+		if(session()->get('id')>0){
 		$model = new M_office;
+
 		$desc['darren'] = $model->tampil('gudang');
 		$data['user'] = $model->getWhere('user', $where);
 		echo view('header');
 		echo view('menu',$data);
 		echo view('barang',$desc); 
 		echo view('footer');
+
+		$where = array('id_user');
+		$data['darren'] = $model->tampil('gudang');
+
+		$where = array('id_user' => session()->get('id'));
+		$data['user'] = $model->getWhere('user', $where);
+
+		echo view('header');
+		echo view('menu', $data);
+		echo view('barang',$data); 
+		echo view('footer');
+	} else {
+        return redirect()->to('home/login');
+    }
+
 		}
 
 
 		public function print()
 		{
+			if(session()->get('id')>0){
 			require_once  FCPATH. 'tcpdf/tcpdf.php';
     	$model = new M_office();
 		$data['darren'] = $model->tampil('gudang');
@@ -143,16 +163,29 @@ class Home extends BaseController
     $pdf->writeHTML($html, true, false, true, false, '');
     $pdf->Output('Contoh Print.pdf', 'I');
 	exit();
+
 		}
+
+} else {
+	return redirect()->to('home/login');
+}
+}
+
+
 	public function TambahBarang()
 {
-
+	if(session()->get('id')>0){
 	$model = new M_office;
 	$data['darren'] = $model->tampil('gudang');
+	$where = array('id_user' => session()->get('id'));
+	$data['user'] = $model->getWhere('user', $where);
 	echo view('header');
-	echo view('menu');
+	echo view ('menu', $data);
 	echo view('tambahbarang',$data); 
 	echo view('footer');
+} else {
+	return redirect()->to('home/login');
+}
 }
 
 public function aksi_t_barang()
@@ -176,15 +209,20 @@ public function aksi_t_barang()
 
 public function editbarang($id)
 {
-
+	if(session()->get('id')>0){
 	$model = new M_office;
 	$where = array('id_barang' => $id);
 	$data['darren'] = $model->getWhere('gudang', $where);
+	$where = array('id_user' => session()->get('id'));
+	$data['user'] = $model->getWhere('user', $where);
+
 	echo view('header');
-	echo view('menu');
+	echo view ('menu', $data);
 	echo view('e_barang',$data); 
 	echo view('footer');
-
+} else {
+	return redirect()->to('home/login');
+}
 }
 
 public function aksieditbarang()

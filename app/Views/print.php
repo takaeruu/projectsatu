@@ -1,7 +1,11 @@
 <?php
 
-require_once FCPATH. 'tcpdf/tcpdf.php';
+
+
 $imagePath = FCPATH. 'img/kop.jpeg';
+
+$imagePath = 'https://i.postimg.cc/bYTDFsYg/kop.jpg';
+
 $imageWidth = 50;
 $imageHeight = 50;
 ?>
