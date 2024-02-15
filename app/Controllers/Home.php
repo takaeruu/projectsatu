@@ -111,7 +111,7 @@ class Home extends BaseController
 		if(session()->get('id')>0){
 		$model = new M_office;
 		$where = array('id_user');
-		$data['darren'] = $model->tampil('gudang');
+		$data['darren'] = $model->tampil_urut('gudang');
 
 		$where = array('id_user' => session()->get('id'));
 		$data['user'] = $model->getWhere('user', $where);
